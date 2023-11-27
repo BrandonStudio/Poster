@@ -1,66 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Poster.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
+    <ContentView>
+        <toolkit:DockLayout
+            Margin="0,10"
             Padding="30,0"
-            VerticalOptions="Center">
+            VerticalOptions="FillAndExpand">
 
-            <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignContent="Center">
-                <Label Text="URL: " FlexLayout.Grow="1" />
-                <Border>
-                    <Entry Placeholder="Enter URL" WidthRequest="200" />
-                </Border>
-                <Button Text="Send" HorizontalOptions="End" />
-            </FlexLayout>
+            <VerticalStackLayout toolkit:DockLayout.DockPosition="Top"
+                                 Margin="10" Padding="10">
+                <FlexLayout Direction="Row"
+                            JustifyContent="SpaceBetween">
+                    <Label VerticalTextAlignment="Center" Margin="2,0"
+                           Text="URL: " />
+                    <Entry x:Name="urlInput"
+                           FlexLayout.Grow="1" Margin="2,0"
+                           Placeholder="Enter URL" />
+                    <Button HorizontalOptions="End" Margin="2,0"
+                            Text="Send" />
+                </FlexLayout>
+                <Label x:Name="urlHintLabel"
+                       Margin="50,10,0,0"
+                       TextColor="Gray" FontSize="12"
+                       Text="URL" />
+            </VerticalStackLayout>
 
-            <Grid>
+            <Grid Margin="2" Padding="2"
+                  ColumnSpacing="15" RowSpacing="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60*" />
                     <ColumnDefinition Width="40*" />
                 </Grid.ColumnDefinitions>
-                <VerticalStackLayout Grid.Column="0">
-                    <Border>
-                        <Label Text="Request" />
-                    </Border>
-                </VerticalStackLayout>
-                <VerticalStackLayout Grid.Column="1">
-                    <Border>
-                        <Label Text="Response" />
-                    </Border>
-                </VerticalStackLayout>
+                <FlexLayout Direction="Column"
+                            JustifyContent="SpaceEvenly"
+                            Grid.Column="0">
+                    <Label
+                           Text="Request"/>
+                    <VerticalStackLayout Margin="2,0,0,0">
+                        <FlexLayout>
+                            <Label VerticalTextAlignment="Center"
+                                   Text="Content-Type: " />
+                            <Entry x:Name="contentTypeInput"
+                                   FlexLayout.Grow="1"
+                                   Margin="2,0"
+                                   Text="application/x-www-from-urlencoded" />
+                        </FlexLayout>
+                    </VerticalStackLayout>
+                    <Editor FlexLayout.Grow="1"
+                            Margin="2"
+                            VerticalTextAlignment="Start"
+                            FontFamily="monospace"
+                            Placeholder="Request body" />
+                </FlexLayout>
+                <FlexLayout Direction="Column"
+                            JustifyContent="SpaceEvenly"
+                            Grid.Column="1">
+                    <Label Text="Response" />
+                    <Editor FlexLayout.Grow=".2"
+                            Margin="2"
+                            IsEnabled="False"
+                            Text="Status" />
+                    <Editor FlexLayout.Grow="1"
+                            Margin="2"
+                            VerticalTextAlignment="Start"
+                            IsReadOnly="True"
+                            FontFamily="monospace"
+                            Text="Response body" />
+                </FlexLayout>
             </Grid>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+        </toolkit:DockLayout>
+    </ContentView>
 
 </ContentPage>
