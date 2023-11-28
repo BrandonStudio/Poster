@@ -15,7 +15,7 @@
 		<ApplicationTitle>Poster</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.poster</ApplicationId>
+		<ApplicationId>bs.poster</ApplicationId>
 		<ApplicationIdGuid>0dd87dae-6490-4f84-bcba-0ba12bc50073</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -30,42 +30,12 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 		<Authors>Brandon Studio</Authors>
 		<RepositoryUrl>https://github.com/BrandonStudio/Poster</RepositoryUrl>
-		<PublishAot>True</PublishAot>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
-	  <ApplicationId>bs.poster</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
-	  <ApplicationId>bs.poster</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
-	  <ApplicationId>bs.poster</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
-	  <ApplicationId>bs.poster</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
-	  <ApplicationId>bs.poster</ApplicationId>
 	  <AndroidLinkTool>r8</AndroidLinkTool>
 	  <AndroidPackageFormat>apk</AndroidPackageFormat>
 	  <EnableLLVM>True</EnableLLVM>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
-	  <ApplicationId>bs.poster</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
-	  <ApplicationId>bs.poster</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
-	  <ApplicationId>bs.poster</ApplicationId>
 	</PropertyGroup>
 
 	<ItemGroup>
