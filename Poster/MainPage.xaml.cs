@@ -45,7 +45,7 @@ public partial class MainPage : ContentPage
 			var response = await result.Content.ReadAsStringAsync();
 			responseBodyBox.Text = response;
 		}
-		catch (HttpRequestException ex)
+		catch (Exception ex) when (ex is HttpRequestException or InvalidOperationException)
 		{
 			responseStatusBox.Text = ex.Message;
 			responseStatusBox.TextColor = Colors.Red;
