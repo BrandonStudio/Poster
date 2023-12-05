@@ -26,7 +26,7 @@
   </Resources>
 
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="windows.PartialTrustApplication">
       <uap:VisualElements
         DisplayName="$placeholder$"
         Description="$placeholder$"
@@ -38,9 +38,5 @@
       </uap:VisualElements>
     </Application>
   </Applications>
-
-  <Capabilities>
-    <rescap:Capability Name="runFullTrust" />
-  </Capabilities>
 
 </Package>
