@@ -13,6 +13,8 @@ public partial class App : Application
 	{
 		var window = base.CreateWindow(activationState);
 		window.Title = MainPage?.Title;
+		window.MinimumWidth = 300;
+		window.MinimumHeight = 300;
 		return window;
 	}
 }

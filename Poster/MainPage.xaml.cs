@@ -1,10 +1,13 @@
-﻿namespace Poster;
+﻿using Microsoft.Maui.Layouts;
+
+namespace Poster;
 
 public partial class MainPage : ContentPage
 {
 	public MainPage()
 	{
 		InitializeComponent();
+		AutoWrapBody();
 	}
 
 	private void OnUrlChanged(object sender, TextChangedEventArgs e)
@@ -49,6 +52,30 @@ public partial class MainPage : ContentPage
 		{
 			responseStatusBox.Text = ex.Message;
 			responseStatusBox.TextColor = Colors.Red;
+		}
+	}
+
+	private void OnBodySizeChanged(object sender, EventArgs e)
+	{
+		AutoWrapBody();
+	}
+
+	static FlexBasis
+		s_leftBasis = new(.58f, true),
+		s_rightBasis = new(.4f, true);
+	private void AutoWrapBody()
+	{
+		if (body.Width >= 600)
+		{
+			body.Direction = FlexDirection.Row;
+			FlexLayout.SetBasis(leftPanel, s_leftBasis);
+			FlexLayout.SetBasis(rightPanel, s_rightBasis);
+		}
+		else
+		{
+			body.Direction = FlexDirection.Column;
+			FlexLayout.SetBasis(leftPanel, s_rightBasis);
+			FlexLayout.SetBasis(rightPanel, s_leftBasis);
 		}
 	}
 }
