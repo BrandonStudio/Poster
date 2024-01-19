@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Layouts;
+using Microsoft.Maui.Layouts;
 
 namespace Poster;
 
@@ -34,6 +34,8 @@ public partial class MainPage : ContentPage
 		{
 			Timeout = TimeSpan.FromSeconds(120)
 		};
+		client.DefaultRequestHeaders.UserAgent.Add(
+			new("Poster", Assembly.GetExecutingAssembly().GetName().Version.ToString()));
 		HttpContent content = null;
 		if (!string.IsNullOrWhiteSpace(requestBodyInput.Text))
 			content = new StringContent(requestBodyInput.Text, null, mediaType: contentTypeInput.Text);
