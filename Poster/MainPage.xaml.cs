@@ -1,4 +1,5 @@
 using Microsoft.Maui.Layouts;
+using System.Reflection;
 
 namespace Poster;
 
@@ -9,6 +10,8 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 		AutoWrapBody();
 	}
+
+	protected CancellationTokenSource _sendButtonCTS = new();
 
 	private void OnUrlChanged(object sender, TextChangedEventArgs e)
 	{
@@ -22,13 +25,14 @@ public partial class MainPage : ContentPage
 
 	private async void StartSend(object sender, EventArgs e)
 	{
+		_sendButtonCTS.Cancel();
 		responseStatusBox.Text = "Sending...";
 		responseStatusBox.TextColor = Colors.Gray;
 		responseBodyBox.Text = string.Empty;
-		await SendAsync();
+		await SendAsync(_sendButtonCTS.Token);
 	}
 
-	private async Task SendAsync()
+	private async Task SendAsync(CancellationToken cancellationToken)
 	{
 		HttpClient client = new()
 		{
@@ -41,13 +45,13 @@ public partial class MainPage : ContentPage
 			content = new StringContent(requestBodyInput.Text, null, mediaType: contentTypeInput.Text);
 		try
 		{
-			var result = await client.PostAsync(urlHintLabel.Text, content);
+			var result = await client.PostAsync(urlHintLabel.Text, content, cancellationToken);
 			responseStatusBox.Text = result.StatusCode.ToString();
 			if (!result.IsSuccessStatusCode)
 				responseStatusBox.TextColor = Colors.Red;
 			else
 				responseStatusBox.TextColor = Colors.Green;
-			var response = await result.Content.ReadAsStringAsync();
+			var response = await result.Content.ReadAsStringAsync(cancellationToken);
 			responseBodyBox.Text = response;
 		}
 		catch (Exception ex) when (ex is HttpRequestException or InvalidOperationException)
