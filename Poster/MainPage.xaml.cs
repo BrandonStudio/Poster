@@ -11,7 +11,7 @@ public partial class MainPage : ContentPage
 		AutoWrapBody();
 	}
 
-	protected CancellationTokenSource _sendButtonCTS = new();
+	protected CancellationTokenSource _sendButtonCTS;
 
 	private void OnUrlChanged(object sender, TextChangedEventArgs e)
 	{
@@ -25,15 +25,25 @@ public partial class MainPage : ContentPage
 
 	private async void StartSend(object sender, EventArgs e)
 	{
-		_sendButtonCTS.Cancel();
+		_sendButtonCTS?.Cancel();
+		_sendButtonCTS = new();
 		responseStatusBox.Text = "Sending...";
 		responseStatusBox.TextColor = Colors.Gray;
 		responseBodyBox.Text = string.Empty;
-		await SendAsync(_sendButtonCTS.Token);
+		try
+		{
+			await SendAsync(_sendButtonCTS.Token);
+		}
+		catch (OperationCanceledException)
+		{
+			// Do nothing.
+        }
 	}
 
+	/// <exception cref="OperationCanceledException">The operation was canceled.</exception>
 	private async Task SendAsync(CancellationToken cancellationToken)
 	{
+		cancellationToken.ThrowIfCancellationRequested();
 		HttpClient client = new()
 		{
 			Timeout = TimeSpan.FromSeconds(120)
