@@ -1,84 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:tk="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="Poster.MainPage"
-             Title="Poster">
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:tk="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+       x:Class="Poster.MainPage"
+       Title="Poster">
 
-        <tk:DockLayout
-            Margin="0,10"
-            Padding="30,0">
+  <tk:DockLayout
+    Margin="0,10"
+    Padding="30,0">
 
-            <VerticalStackLayout tk:DockLayout.DockPosition="Top"
-                                 Margin="10" Padding="10">
-                <FlexLayout Direction="Row"
-                            JustifyContent="SpaceBetween">
-                    <Label VerticalTextAlignment="Center" Margin="2,0"
-                           Text="URL: " />
-                    <Entry x:Name="urlInput"
-                           FlexLayout.Grow="1" Margin="2,0"
-                           TextChanged="OnUrlChanged"
-                           Completed="StartSend"
-                           Placeholder="Enter URL" />
-                    <Button x:Name="sendButton"
-                            HorizontalOptions="End" Margin="2,0"
-                            Clicked="StartSend"
-                            Text="Send" />
-                </FlexLayout>
-                <Label x:Name="urlHintLabel"
-                       Margin="50,10,0,0"
-                       TextColor="Gray" FontSize="12"
-                       Text="URL" />
-            </VerticalStackLayout>
+    <VerticalStackLayout tk:DockLayout.DockPosition="Top"
+      Margin="10" Padding="10">
+      <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+        <Label VerticalTextAlignment="Center" Margin="2,0"
+          Text="URL: " />
+        <Entry x:Name="urlInput"
+          FlexLayout.Grow="1" Margin="2,0"
+          TextChanged="OnUrlChanged"
+          Completed="StartSend"
+          Placeholder="Enter URL" />
+        <Button x:Name="sendButton"
+          HorizontalOptions="End" Margin="2,0"
+          Clicked="StartSend"
+          Text="Send" />
+      </FlexLayout>
+      <Label x:Name="urlHintLabel"
+        Margin="50,10,0,0"
+        TextColor="Gray" FontSize="12"
+        Text="URL" />
+    </VerticalStackLayout>
 
-            <FlexLayout
-                x:Name="body"
-                SizeChanged="OnBodySizeChanged"
-                Margin="2" Padding="2">
-                <tk:DockLayout
-                    x:Name="leftPanel"
-                    Margin="5">
-                    <Label tk:DockLayout.DockPosition="Top"
-                           Text="Request"/>
-                    <tk:DockLayout Margin="2,0,0,0">
-                        <Label VerticalTextAlignment="Center"
-                               tk:DockLayout.DockPosition="Left"
-                               Text="Content-Type: " />
-                        <Entry x:Name="contentTypeInput"
-                               FlexLayout.Grow="1"
-                               Margin="2,0"
-                               Completed="StartSend"
-                               Text="application/x-www-from-urlencoded" />
-                    </tk:DockLayout>
-                    <Editor x:Name="requestBodyInput"
-                            FlexLayout.Grow="1"
-                            Margin="2"
-                            VerticalTextAlignment="Start"
-                            Placeholder="Request body" />
-                </tk:DockLayout>
-                <tk:DockLayout
-                    x:Name="rightPanel"
-                    Margin="5">
-                    <Label tk:DockLayout.DockPosition="Top"
-                           Text="Response" />
-                    <FlexLayout
-                        Direction="Column">
-                        <Editor x:Name="responseStatusBox"
-                                HeightRequest="60"
-                                Margin="2,4"
-                                IsReadOnly="True"
-                                TextColor="Gray"
-                                Text="Status" />
-                        <Editor x:Name="responseBodyBox"
-                                FlexLayout.Grow="1"
-                                Margin="2,4"
-                                VerticalTextAlignment="Start"
-                                IsReadOnly="True"
-                                Text="Response body" />
-                    </FlexLayout>
-                </tk:DockLayout>
-            </FlexLayout>
-
+    <FlexLayout
+      x:Name="body"
+      SizeChanged="OnBodySizeChanged"
+      Margin="2" Padding="2">
+      <tk:DockLayout
+        x:Name="leftPanel"
+        Margin="5">
+        <Label tk:DockLayout.DockPosition="Top"
+          Text="Request"/>
+        <tk:DockLayout Margin="2,0,0,0" tk:DockLayout.DockPosition="Top">
+          <Label VerticalTextAlignment="Center"
+            tk:DockLayout.DockPosition="Left"
+            Text="Content-Type: " />
+          <Entry x:Name="contentTypeInput"
+            FlexLayout.Grow="1"
+            Margin="2,0"
+            Completed="StartSend"
+            Text="application/x-www-from-urlencoded" />
         </tk:DockLayout>
+        <Editor x:Name="requestBodyInput"
+          tk:DockLayout.DockPosition="Top"
+          Margin="2"
+          VerticalTextAlignment="Start"
+          Placeholder="Request body" />
+      </tk:DockLayout>
+      <tk:DockLayout
+        x:Name="rightPanel"
+        Margin="5">
+        <Label tk:DockLayout.DockPosition="Top"
+               Text="Response" />
+        <tk:DockLayout
+          tk:DockLayout.DockPosition="Top"
+          WidthRequest="{Binding Width, Source={RelativeSource AncestorType={x:Type tk:DockLayout}}, Mode=OneWay}"
+          Padding="5">
+          <Editor x:Name="responseStatusBox"
+            tk:DockLayout.DockPosition="Top"
+            HeightRequest="60"
+            Margin="2,4"
+            IsReadOnly="True"
+            TextColor="Gray"
+            Text="Status" />
+          <Editor x:Name="responseBodyBox"
+            FlexLayout.Grow="1"
+            Margin="2,4"
+            VerticalTextAlignment="Start"
+            IsReadOnly="True"
+            Text="Response body" />
+        </tk:DockLayout>
+      </tk:DockLayout>
+    </FlexLayout>
+
+  </tk:DockLayout>
 
 </ContentPage>

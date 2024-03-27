@@ -37,7 +37,7 @@ public partial class MainPage : ContentPage
 		catch (OperationCanceledException)
 		{
 			// Do nothing.
-        }
+		}
 	}
 
 	/// <exception cref="OperationCanceledException">The operation was canceled.</exception>

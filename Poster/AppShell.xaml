@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="Poster.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Poster"
-    Title="Poster"
-    Shell.FlyoutBehavior="Disabled">
+  x:Class="Poster.AppShell"
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:local="clr-namespace:Poster"
+  Title="Poster"
+  Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Poster"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+  <ShellContent
+    Title="Poster"
+    ContentTemplate="{DataTemplate local:MainPage}"
+    Route="MainPage" />
 
 </Shell>
