@@ -58,10 +58,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="7.0.0" />
-	  <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.3" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+	  <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.14" />
 	</ItemGroup>
 
     <Import Project="Microsoft.Build.Msix.Packaging.MsixBundle.targets" />
+
+    <ItemGroup>
+      <PackageReference Update="Microsoft.Maui.Controls.Compatibility" Version="8.0.14" />
+    </ItemGroup>
 
 </Project>
